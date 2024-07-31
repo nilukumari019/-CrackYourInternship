@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long int ll;
+void solve()
+{
+    string s;
+    cin>>s;
+    ll n=s.length();
+    unordered_map<char,ll>mp;
+    for(int i=0;i<n;i++)
+    {
+        mp[s[i]]++;
+    }
+    for(auto it:mp)
+    {
+        if(it.second>1)
+        cout<<it.first<<","<<" "<<"count="<<" "<<it.second<<"\n";
+    }
+
+}
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+    // ll t;
+    // cin>>t;
+    // while(t--)
+    // {
+    //     solve();
+    // }
+    solve();
+}
