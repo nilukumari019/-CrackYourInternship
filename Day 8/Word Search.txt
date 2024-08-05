@@ -1,0 +1,39 @@
+class Solution {
+public:
+int n,m;
+bool isFind(int i,int j,vector<vector<char>>& board, string &word,int idx)
+{
+    if(idx==word.length())
+    return true;
+    if(i<0|| i>=n||j<0||j>=m|| board[i][j]!=word[idx] || board[i][j]=='$')
+    return false;
+    int dx[4]={-1,0,1,0};
+    int dy[4]={0,1,0,-1};
+    char temp=board[i][j];
+    board[i][j]='$';
+    for(int k=0;k<4;k++)
+    {
+        int new_x=dx[k]+i;
+       int  new_y=dy[k]+j;
+        if(isFind(new_x,new_y,board,word,idx+1))
+        return true;
+    }
+    board[i][j]=temp;
+    idx--;
+    return false;
+}
+    bool exist(vector<vector<char>>& board, string word) {
+         n=board.size();
+         m=board[0].size();
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(board[i][j]==word[0] && isFind(i,j,board,word,0))
+                return true;
+            }
+        }
+        return false;
+        
+    }
+};

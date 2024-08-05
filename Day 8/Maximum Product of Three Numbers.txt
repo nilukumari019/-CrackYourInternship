@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int maximumProduct(vector<int>& nums) {
+        int n=nums.size();
+        sort(nums.begin(),nums.end());
+        int prod=INT_MIN;
+        for(int i=0;i<n;i++)
+        {
+            int a=nums[i];
+            int j=i+1;
+            int k=n-1;
+            while(j<k)
+            {
+                prod=max(prod,a*nums[j]*nums[k]);
+                j++;
+                k--;
+            }
+            
+        }
+        return prod;
+        
+        
+    }
+};
