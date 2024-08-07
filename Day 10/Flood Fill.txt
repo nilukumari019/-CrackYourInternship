@@ -1,0 +1,26 @@
+class Solution {
+public:
+void dfs(int sr,int sc,vector<vector<int>>& res,int iniColor,int newColor,int drow[],int dcol[],vector<vector<int>>& image)
+{
+    res[sr][sc]=newColor;
+    int n=image.size();
+    int m=image[0].size();
+    for(int i=0;i<4;i++)
+    {
+        int nrow=sr+drow[i];
+        int ncol=sc+dcol[i];
+        if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && res[nrow][ncol]!=newColor && image[nrow][ncol]==iniColor)
+        {
+            dfs(nrow,ncol,res,iniColor,newColor,drow,dcol,image);
+        }
+    }
+}
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        vector<vector<int>>res=image;
+        int iniColor=image[sr][sc];
+        int drow[]={-1,0,+1,0};
+        int dcol[]={0,+1,0,-1};
+        dfs(sr,sc,res,iniColor,color,drow,dcol,image);
+        return res;
+    }
+};

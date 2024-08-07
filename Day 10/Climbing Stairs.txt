@@ -1,0 +1,20 @@
+class Solution {
+public:
+int fun(int idx,vector<int>&dp)
+{
+    if(idx<0)
+    return 0;
+    if(idx==0)
+    return 1;
+    if(dp[idx]!=-1)
+    return dp[idx];
+    int one=fun(idx-1,dp);
+    int two=fun(idx-2,dp);
+    return dp[idx]= (one+two);
+}
+    int climbStairs(int n) {
+        vector<int>dp(n+1,-1);
+        int ans=fun(n,dp);
+        return ans;
+    }
+};
