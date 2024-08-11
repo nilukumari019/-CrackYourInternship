@@ -1,0 +1,32 @@
+class Solution {
+public:
+void function(int idx,vector<int>&cand,int target,vector<vector<int>>&v,vector<int>&ds)
+{
+   if(idx==cand.size())
+   {
+    if(target==0)
+    {
+        v.push_back(ds);
+    }
+    return ;
+   }
+   if(target<0)
+   return ;
+   ds.push_back(cand[idx]);
+   function(idx+1,cand,target-cand[idx],v,ds);
+   ds.pop_back();
+   while(idx+1<cand.size() && cand[idx]==cand[idx+1])
+   idx++;
+   function(idx+1,cand,target,v,ds);
+       
+
+}
+    vector<vector<int>> combinationSum2(vector<int>& cand, int target) {
+        vector<int>ds;
+        sort(cand.begin(),cand.end());
+        vector<vector<int>>v;
+        function(0,cand,target,v,ds);
+        sort(v.begin(),v.end());
+        return v;
+    }
+};

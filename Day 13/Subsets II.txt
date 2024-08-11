@@ -1,0 +1,31 @@
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+void function(int idx,vector<int>&nums,vector<int>&ds,vector<vector<int>>&ans)
+{
+    if(idx==nums.size())
+    {
+        ans.push_back(ds);
+        return;
+    }
+    // taking
+    ds.push_back(nums[idx]);
+    function(idx+1,nums,ds,ans);
+    ds.pop_back();
+    // ignoring
+    while(idx+1<nums.size() && nums[idx]==nums[idx+1])
+    idx++;
+    function(idx+1,nums,ds,ans);
+}
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<int>ds;
+        sort(nums.begin(),nums.end());
+        vector<vector<int>>ans;
+        function(0,nums,ds,ans);
+        sort(ans.begin(),ans.end());
+
+        return ans;
+        
+    }
+};
