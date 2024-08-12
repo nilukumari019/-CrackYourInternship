@@ -1,0 +1,34 @@
+class Solution {
+public:
+void dfs(int curr,int prev,vector<int>&res,unordered_map<int,vector<int>>&adj)
+{
+    res.push_back(curr);
+    for(auto &v:adj[curr])
+    {
+        if(v!=prev)
+        dfs(v,curr,res,adj);
+    }
+}
+    vector<int> restoreArray(vector<vector<int>>&a) {
+        unordered_map<int,vector<int>>adj;
+        for(auto it:a)
+        {
+            int u=it[0];
+            int v=it[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        int start=-1;
+        for(auto it:adj)
+        {
+            if(it.second.size()==1)
+            {
+                start=it.first;
+                break;
+            }
+        }
+        vector<int>res;
+        dfs(start,INT_MIN,res,adj);
+        return res;
+    }
+};
